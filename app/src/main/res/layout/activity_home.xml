@@ -1,11 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
+    android:orientation="vertical"
+
     tools:context=".HomeActivity">
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="true"
+        android:id="@+id/w_name"
+        android:layout_gravity="center_vertical"
+        app:hintTextColor="#a60000"
+        android:paddingTop="7dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/customer_inputlogin">
+        <EditText
+            android:id="@+id/txt_name"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Name"
+            android:paddingTop="3dp"
+            android:paddingHorizontal="12dp"
+            android:background="#f5f5f5"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="true"
+        android:id="@+id/w_population"
+        android:layout_gravity="center_vertical"
+        app:hintTextColor="#a60000"
+        android:paddingTop="7dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/customer_inputlogin">
+        <EditText
+            android:id="@+id/txt_population"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Population"
+            android:paddingTop="3dp"
+            android:paddingHorizontal="12dp"
+            android:background="#f5f5f5"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintEnabled="true"
+        android:id="@+id/w_country"
+        android:layout_gravity="center_vertical"
+        app:hintTextColor="#a60000"
+        android:paddingTop="7dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/customer_inputlogin">
+        <EditText
+            android:id="@+id/txt_country"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Country"
+            android:paddingTop="3dp"
+            android:paddingHorizontal="12dp"
+            android:background="#f5f5f5"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:layout_centerInParent="true"
+        android:id="@+id/btn_writeData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Write Data From Firestore"
+        android:textStyle="bold"
+        android:layout_marginTop="36dp"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/cusomer_btn_login_red"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingVertical="24dp"
+        android:id="@+id/recyclerView_city"/>
     <Button
         android:layout_centerInParent="true"
         android:id="@+id/btn_logout"
@@ -13,8 +95,7 @@
         android:layout_height="wrap_content"
         android:text="ĐĂNG XUẤT"
         android:textStyle="bold"
-        android:layout_marginTop="36dp"
         android:textSize="16dp"
         android:textColor="@color/white"
         android:background="@drawable/cusomer_btn_login_red"/>
-</RelativeLayout>
+</LinearLayout>
