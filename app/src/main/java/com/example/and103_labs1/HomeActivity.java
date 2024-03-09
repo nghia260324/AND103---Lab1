@@ -65,8 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                     Toast.makeText(HomeActivity.this, "Không được để trống thông tin!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                WriteDataToFirebaseStorage(new City(UUID.randomUUID().toString(),name,Integer.parseInt(population),country));
+                WriteDataToFirestore(new City(UUID.randomUUID().toString(),name,Integer.parseInt(population),country));
             }
         });
 
@@ -99,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView_city.setAdapter(cityAdapter);
 
     }
-    private void WriteDataToFirebaseStorage(City city) {
+    private void WriteDataToFirestore(City city) {
         db.collection("City")
                 .add(city)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
