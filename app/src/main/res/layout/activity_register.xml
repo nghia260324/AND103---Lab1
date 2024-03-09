@@ -63,7 +63,7 @@
                 android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Nhập username"
+                android:hint="Nhập email"
                 android:paddingTop="3dp"
                 android:paddingHorizontal="12dp"
                 android:background="#f5f5f5"/>
