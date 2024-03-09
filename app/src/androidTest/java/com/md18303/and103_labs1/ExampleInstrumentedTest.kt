@@ -1,4 +1,4 @@
-package com.example.and103_labs1
+package com.md18303.and103_labs1
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

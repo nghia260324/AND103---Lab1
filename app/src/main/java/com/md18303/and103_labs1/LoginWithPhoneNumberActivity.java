@@ -1,4 +1,4 @@
-package com.example.and103_labs1;
+package com.md18303.and103_labs1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

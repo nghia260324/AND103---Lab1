@@ -1,4 +1,4 @@
-package com.example.and103_labs1;
+package com.md18303.and103_labs1;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class RecyclerViewCityAdapter extends RecyclerView.Adapter<RecyclerViewCityAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<City> listCity;
+    private ArrayList<CityModel> listCityModel;
     private HomeActivity homeActivity;
 
-    public RecyclerViewCityAdapter(Context context, ArrayList<City> listCity, HomeActivity homeActivity) {
+    public RecyclerViewCityAdapter(Context context, ArrayList<CityModel> listCityModel, HomeActivity homeActivity) {
         this.context = context;
-        this.listCity = listCity;
+        this.listCityModel = listCityModel;
         this.homeActivity = homeActivity;
     }
 
@@ -31,16 +31,16 @@ public class RecyclerViewCityAdapter extends RecyclerView.Adapter<RecyclerViewCi
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewCityAdapter.ViewHolder holder, int position) {
-        City city = listCity.get(position);
+        CityModel cityModel = listCityModel.get(position);
         holder.tv_stt.setText(String.valueOf(holder.getAdapterPosition() + 1));
-        holder.tv_name.setText(city.getName());
-        holder.tv_population.setText(String.valueOf(city.getPopulation()));
-        holder.tv_country.setText(city.getCountry());
+        holder.tv_name.setText(cityModel.getName());
+        holder.tv_population.setText(String.valueOf(cityModel.getPopulation()));
+        holder.tv_country.setText(cityModel.getCountry());
     }
 
     @Override
     public int getItemCount() {
-        return listCity != null ? listCity.size() : 0;
+        return listCityModel != null ? listCityModel.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

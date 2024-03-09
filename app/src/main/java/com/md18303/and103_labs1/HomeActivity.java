@@ -1,4 +1,4 @@
-package com.example.and103_labs1;
+package com.md18303.and103_labs1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -31,19 +31,19 @@ import java.util.UUID;
 public class HomeActivity extends AppCompatActivity {
 
     Button btn_logout;
-    EditText txt_name,txt_country,txt_population;
+    EditText edtName,edtCountry,edtPopulation;
     Button btn_writeData;
     RecyclerView recyclerView_city;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<City> listCity = new ArrayList<>();
+    ArrayList<CityModel> listCityModel = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         btn_logout = findViewById(R.id.btn_logout);
-        txt_name = findViewById(R.id.txt_name);
-        txt_population = findViewById(R.id.txt_population);
-        txt_country = findViewById(R.id.txt_country);
+        edtName = findViewById(R.id.txt_name);
+        edtPopulation = findViewById(R.id.txt_population);
+        edtCountry = findViewById(R.id.txt_country);
         btn_writeData = findViewById(R.id.btn_writeData);
         recyclerView_city = findViewById(R.id.recyclerView_city);
         btn_logout.setOnClickListener(new View.OnClickListener() {
@@ -58,15 +58,15 @@ public class HomeActivity extends AppCompatActivity {
         btn_writeData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = txt_name.getText().toString().trim();
-                String population = txt_population.getText().toString().trim();
-                String country = txt_country.getText().toString().trim();
+                String name = edtName.getText().toString().trim();
+                String population = edtPopulation.getText().toString().trim();
+                String country = edtCountry.getText().toString().trim();
                 if (name.isEmpty() || population.isEmpty() || country.isEmpty()) {
                     Toast.makeText(HomeActivity.this, "Không được để trống thông tin!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                WriteDataToFirebaseStorage(new City(UUID.randomUUID().toString(),name,Integer.parseInt(population),country));
+                WriteDataToFirebaseStorage(new CityModel(UUID.randomUUID().toString(),name,Integer.parseInt(population),country));
             }
         });
 
@@ -79,12 +79,12 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            if (listCity != null) {
-                                listCity.clear();
+                            if (listCityModel != null) {
+                                listCityModel.clear();
                             }
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                City city =  document.toObject(City.class);
-                                listCity.add(city);
+                                CityModel cityModel =  document.toObject(CityModel.class);
+                                listCityModel.add(cityModel);
                             }
                             FillCityToRecyclerView();
                         } else {
@@ -93,23 +93,23 @@ public class HomeActivity extends AppCompatActivity {
                 });
     }
     private void FillCityToRecyclerView() {
-        RecyclerViewCityAdapter cityAdapter = new RecyclerViewCityAdapter(this,listCity,this);
+        RecyclerViewCityAdapter cityAdapter = new RecyclerViewCityAdapter(this, listCityModel,this);
         recyclerView_city.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView_city.setLayoutManager(new GridLayoutManager(this,1));
         recyclerView_city.setAdapter(cityAdapter);
 
     }
-    private void WriteDataToFirebaseStorage(City city) {
+    private void WriteDataToFirebaseStorage(CityModel cityModel) {
         db.collection("City")
-                .add(city)
+                .add(cityModel)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.e("documentReference Id",documentReference.getId());
                         Toast.makeText(HomeActivity.this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
-                        txt_name.setText("");
-                        txt_population.setText("");
-                        txt_country.setText("");
+                        edtName.setText("");
+                        edtPopulation.setText("");
+                        edtCountry.setText("");
                         ReadDataFormFirestore();
                     }
                 })

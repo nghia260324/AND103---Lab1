@@ -1,15 +1,15 @@
-package com.example.and103_labs1;
+package com.md18303.and103_labs1;
 
-public class City {
+public class CityModel {
     private String id;
     private String name;
     private int population;
     private String country;
 
-    public City() {
+    public CityModel() {
     }
 
-    public City(String id, String name, int population, String country) {
+    public CityModel(String id, String name, int population, String country) {
         this.id = id;
         this.name = name;
         this.population = population;
